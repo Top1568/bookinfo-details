@@ -1,0 +1,16 @@
+details:
+  namespace: student118-bookinfo-uat
+  image: ghcr.io/top1568/bookinfo-details
+  tag: uat
+  replicas: 1
+  imagePullSecrets: registry-bookinfo
+  port: 9080
+  healthCheckPath: "/health"
+
+ingress:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+  host: bookinfo.uat.opsta.net
+  path: "/student118/details(/|$)(.*)"
+  serviceType: ClusterIP
